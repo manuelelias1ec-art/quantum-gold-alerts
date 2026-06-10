@@ -10,19 +10,13 @@ app.post('/webhook', async (req, res) => {
   try {
     const data   = req.body
     const precio = parseFloat(data.precio).toFixed(2)
-    const sl     = data.sl     ? parseFloat(data.sl).toFixed(2)     : 'Ver TV'
-    const tp1    = data.tp1    ? parseFloat(data.tp1).toFixed(2)    : 'Ver TV'
-    const tp2    = data.tp2    ? parseFloat(data.tp2).toFixed(2)    : 'Ver TV'
-    const score  = data.score  ? data.score  : ''
-    const setup  = data.setup  ? data.setup  : ''
     const hora   = new Date().toLocaleTimeString('es-CO', {timeZone:'America/Bogota'})
-
     let msg = ''
 
     if (data.tipo === 'LONG') {
-      msg = '⚡ QUANTUM GOLD\n▲ ENTRAR LONG ' + setup + '\n💰 Entrada: $' + precio + '\n🛑 SL: $' + sl + '\n🎯 TP1: $' + tp1 + '\n🏆 TP2: $' + tp2 + '\n📊 Score: ' + score + '/9\n⏰ ' + hora + ' COL'
+      msg = '⚡ QUANTUM GOLD\n▲ ENTRAR LONG\n💰 Precio: $' + precio + '\n⏰ ' + hora + ' COL\n✅ Verificar SL/TP en TradingView'
     } else if (data.tipo === 'SHORT') {
-      msg = '⚡ QUANTUM GOLD\n▼ ENTRAR SHORT ' + setup + '\n💰 Entrada: $' + precio + '\n🛑 SL: $' + sl + '\n🎯 TP1: $' + tp1 + '\n🏆 TP2: $' + tp2 + '\n📊 Score: ' + score + '/9\n⏰ ' + hora + ' COL'
+      msg = '⚡ QUANTUM GOLD\n▼ ENTRAR SHORT\n💰 Precio: $' + precio + '\n⏰ ' + hora + ' COL\n✅ Verificar SL/TP en TradingView'
     } else if (data.tipo === 'PRE_LONG') {
       msg = '◆ PREPARAR LONG\n💰 $' + precio + ' | ' + hora + '\nEspera confirmación'
     } else if (data.tipo === 'PRE_SHORT') {
